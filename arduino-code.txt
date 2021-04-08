@@ -1,0 +1,33 @@
+#include <Servo.h>
+
+int button = 7;
+int x = 0;
+int ledGreen = 9;
+int ledRed = 8;
+Servo myServo;
+int servo_controller = 10;
+int servoPos = 0;
+ 
+void setup() {
+  pinMode(button, INPUT);
+  pinMode(ledGreen, OUTPUT);
+  pinMode(ledRed, OUTPUT);
+  myServo.attach(servo_controller);
+  Serial.begin(300);
+}
+ 
+void loop() {
+   x = digitalRead(button);
+  if(x == HIGH) {
+    digitalWrite(ledRed, HIGH);
+    digitalWrite(ledGreen, LOW);
+    myServo.write(180);
+    Serial.println(2);
+  }
+  else if(x == LOW) {
+    digitalWrite(ledGreen, HIGH);
+    digitalWrite(ledRed, LOW);
+    myServo.write(0);
+    Serial.println(0);
+  }
+}
